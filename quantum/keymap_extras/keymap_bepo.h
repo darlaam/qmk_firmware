@@ -118,7 +118,7 @@
 // Fourth row
 #define BP_COLON    LSFT(BP_DOT)    // :
 #define BP_COLN     BP_COLON
-#define BP_QUESTION LSFT(BP_QUOTE)  // ?
+#define BP_QUESTION LSFT(BP_APOS)  // ?
 #define BP_QEST     BP_QUESTION
 
 // Space bar
