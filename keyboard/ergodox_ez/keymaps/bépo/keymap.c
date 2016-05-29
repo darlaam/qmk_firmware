@@ -25,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |  Esc   |   "  |   «  |   »  |   (  |   )  |  $   |           |  %   |   @  |   +  |   -  |   /  |   *  |   =    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |   W    |   B  |   É  |   P  |   O  |   È  |  L1  |           |  L1  |   ^  |   V  |   D  |   L  |   J  |   Z    |
+ * |   W    |   B  |   É  |   P  |   O  |   È  | Tab  |           |  L1  |   ^  |   V  |   D  |   L  |   J  |   Z    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | LShift |   A  |   U  |   I  |   E  |   ,  |------|           |------|   C  |   T  |   S  |   R  |   N  | M/RSft |
  * |--------+------+------+------+------+------|Enter |           |BkSpce|------+------+------+------+------+--------|
@@ -46,10 +46,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [LR_BASE] = KEYMAP(  // layer 0 : default
         // left hand
         KC_ESC,     KC_1,      KC_2,    KC_3,      KC_4,     KC_5,    BP_DLR,
-        BP_W  ,     BP_B,      BP_ECUT, BP_P,      BP_O,     BP_EGRV, TG(LR_FN),
+        BP_W  ,     BP_B,      BP_ECUT, BP_P,      BP_O,     BP_EGRV, KC_TAB,
         KC_LSFT,    BP_A,      BP_U,    BP_I,      BP_E,     BP_COMM,
         KC_LCTL,    BP_AGRV,   BP_Y,    BP_X,      BP_DOT,   BP_K,    KC_ENT,
-        KC_HOME,    KC_END,    KC_PGUP, KC_PGDN,   KC_LALT,
+        TG(LR_MEDIA),S(KC_DELT),LCTL(KC_INS),S(KC_INS), KC_LALT,
 
                                                    KC_DELT,  KC_LGUI,
                                                              M(M_LANG),
@@ -60,24 +60,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TG(LR_FN), BP_DCRC,  BP_V,    BP_D,    BP_L,    BP_J,     BP_Z,
                    BP_C,     BP_T,    BP_S,    BP_R,    BP_N,     SFT_T(BP_M),
         KC_BSPC,   BP_APOS,  BP_Q,    BP_G,    BP_H,    BP_F,     KC_RCTL,
-                             BP_ALGR, S(KC_DELT), LCTL(KC_INS), S(KC_INS), LT(LR_FN,BP_CCED),
+                             BP_ALGR, KC_PGUP, KC_PGDN, TG(LR_VIM),LT(LR_FN,BP_CCED),
 
-        ALT_T(KC_APP), CTL_T(KC_ESC),
-        TG(LR_MEDIA),
-        TG(LR_VIM), KC_ENT,   KC_SPC
+        KC_LEFT, KC_RGHT,
+        KC_UP,
+        KC_DOWN, KC_ENT,   KC_SPC
     ),
 /* Mirror Layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |    =   |   0  |   9  |   8  |   7  |   6  |   %   |           |      |   6  |   7  |   8  |   9  |   0  |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |    Z   |   J  |   L  |   D  |   V  |   ^  |      |           |      |   !  |      |      |      |      |        |
+ * |    Z   |   J  |   L  |   D  |   V  |   ^  |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |    M   |   N  |   R  |   S  |   T  |   C  |------|           |------|      |      |      |      |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |  F   |   H  |   G  |   Q  |   '  |      |           |      |   ?  |      |      |      |      |        |
+ * |        |  F   |   H  |   G  |   Q  |   '  |      |           |      |      |      |      |      |      |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |  Ç   |Paste | Copy | Cut  | AltGr|                                       |      |   `  |      |      |       |
+ *   |  Ç   |      |      |      |      |                                       |      |      |      |      |       |
  *   `----------------------------------'                                       `-----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
@@ -93,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         BP_Z,     BP_J,     BP_L,     BP_D,    BP_V,     BP_DCRC,  KC_TRNS,
         ALT_T(BP_M),BP_N,   BP_R,     BP_S,    BP_T,     BP_C,
         KC_TRNS,  BP_F,     BP_H,     BP_G,    BP_Q,     BP_APOS,  KC_TRNS,
-        BP_CCED,  S(KC_INS),LCTL(KC_INS),S(KC_DELT), BP_ALGR,
+        BP_CCED,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,      
 
                                                       KC_TRNS,  KC_TRNS,
                                                                 KC_TRNS,
