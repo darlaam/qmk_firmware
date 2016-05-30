@@ -9,7 +9,7 @@
 enum layers {
     LR_BASE, // default bépo layer
     LR_MIRROR, // mirror layer (left hand mode)
-    LR_FN, // function an mumeric keyboard
+    LR_SYMB, // SYMB and mumeric keyboard
     LR_VIM, // QWERTY vim layer
     LR_MEDIA, // media layer
 };
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         BP_W  ,     BP_B,      BP_ECUT, BP_P,      BP_O,     BP_EGRV, KC_TAB,
         KC_LSFT,    BP_A,      BP_U,    BP_I,      BP_E,     BP_COMM,
         KC_LCTL,    BP_AGRV,   BP_Y,    BP_X,      BP_DOT,   BP_K,    KC_ENT,
-        TG(LR_MEDIA),S(KC_DELT),LCTL(KC_INS),S(KC_INS), KC_LALT,
+        TG(LR_MEDIA),S(KC_DELT),LCTL(KC_INS),S(KC_INS), ALT_T(KC_APP),
 
                                                    KC_DELT,  KC_LGUI,
                                                              M(M_LANG),
@@ -57,10 +57,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         // right hand
         BP_PERC,   KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     BP_EQL,
-        TG(LR_FN), BP_DCRC,  BP_V,    BP_D,    BP_L,    BP_J,     BP_Z,
+        TG(LR_SYMB), BP_DCRC,  BP_V,    BP_D,    BP_L,    BP_J,     BP_Z,
                    BP_C,     BP_T,    BP_S,    BP_R,    BP_N,     SFT_T(BP_M),
         KC_BSPC,   BP_APOS,  BP_Q,    BP_G,    BP_H,    BP_F,     KC_RCTL,
-                             BP_ALGR, KC_PGUP, KC_PGDN, TG(LR_VIM),LT(LR_FN,BP_CCED),
+                             BP_ALGR, KC_PGUP, KC_PGDN, TG(LR_VIM),LT(LR_SYMB,BP_CCED),
 
         KC_LEFT, KC_RGHT,
         KC_UP,
@@ -117,11 +117,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |   $  |   (  |   )  |   {  |   }  |      |           |      |   :  |   7  |  8   |  9   |   *  |  F12   |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |   #  |   !  |   ?  |   [  |   ]  |------|           |------|   =  |   4  |  5   |  6   |   +  |        |
+ * |        |   #  |   !  |   ?  |   [  |   ]  |------|           |------|   =  |   4  |  5   |  6   |   +  | RShift |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        |  |   | Home |  Up  |  End |   `  | Enter|           |Enter |   ;  |   1  |  2   |  3   |   -  |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |  &   | Left | Down | Right|                                       |   0  |   00 |   .  |   /  | Pause |
+ *   |Pause |  &   | Left | Down | Right|                                       |   0  |   00 |   .  |   /  |       |
  *   `----------------------------------'                                       `-----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
@@ -131,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
-[LR_FN] = KEYMAP(
+[LR_SYMB] = KEYMAP(
         // left hand
         KC_TRNS,  KC_F1,    KC_F2,    KC_F3,   KC_F4,    KC_F5,    KC_INS,
         KC_TRNS,  BP_DLR,   BP_LPRN,  BP_RPRN, BP_LCBR,  BP_RCBR,  KC_TRNS,
@@ -148,11 +148,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,  BP_COLN,   BP_7,     BP_8,     BP_9,     BP_ASTR,  KC_F12,
                   BP_EQL,    BP_4,     BP_5,     BP_6,     BP_PLUS,  KC_RSFT,
         KC_ENT,   BP_SCLN,   BP_1,     BP_2,     BP_3,     BP_MINS,  KC_TRNS,
-                             BP_0,     M(M_DBL0),BP_DOT,   BP_SLSH,  KC_PAUS,
+                             BP_0,     M(M_DBL0),BP_DOT,   BP_SLSH,  KC_TRNS,
 
         KC_TRNS,  KC_TRNS,
         KC_TRNS,
-        KC_TRNS,  KC_TRNS,  KC_TRNS
+        KC_PAUS,  KC_TRNS,  KC_TRNS
     ),
 
 };
@@ -198,7 +198,7 @@ void matrix_scan_user(void) {
             ergodox_right_led_1_set(LED_BRIGHTNESS_LO);
             ergodox_right_led_1_on();
             break;
-        case LR_FN:
+        case LR_SYMB:
             ergodox_right_led_2_set(LED_BRIGHTNESS_LO);
             ergodox_right_led_2_on();
             break;
