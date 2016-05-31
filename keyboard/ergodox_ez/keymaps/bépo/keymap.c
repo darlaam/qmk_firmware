@@ -9,7 +9,7 @@
 enum layers {
     LR_BASE, // default bépo layer
     LR_MIRROR, // mirror layer (left hand mode)
-    LR_SYMB, // SYMB and mumeric keyboard
+    LR_SYMB, // YMB and mumeric keyboard
     LR_VIM, // QWERTY vim layer
     LR_MEDIA, // media layer
 };
@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |  Esc   |   "  |   «  |   »  |   (  |   )  |  $   |           |  %   |   @  |   +  |   -  |   /  |   *  |   =    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |   W    |   B  |   É  |   P  |   O  |   È  | Tab  |           |  L1  |   ^  |   V  |   D  |   L  |   J  |   Z    |
+ * |  Tab   |   B  |   É  |   P  |   O  |   È  |  W   |           |  L1  |   ^  |   V  |   D  |   L  |   J  |   Z    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | LShift |   A  |   U  |   I  |   E  |   ,  |------|           |------|   C  |   T  |   S  |   R  |   N  | M/RSft |
  * |--------+------+------+------+------+------|Enter |           |BkSpce|------+------+------+------+------+--------|
@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [LR_BASE] = KEYMAP(  // layer 0 : default
         // left hand
         KC_ESC,     KC_1,      KC_2,    KC_3,      KC_4,     KC_5,    BP_DLR,
-        BP_W  ,     BP_B,      BP_ECUT, BP_P,      BP_O,     BP_EGRV, KC_TAB,
+        KC_TAB,     BP_B,      BP_ECUT, BP_P,      BP_O,     BP_EGRV, BP_W,  
         KC_LSFT,    BP_A,      BP_U,    BP_I,      BP_E,     BP_COMM,
         KC_LCTL,    BP_AGRV,   BP_Y,    BP_X,      BP_DOT,   BP_K,    KC_ENT,
         TG(LR_MIRROR),S(KC_DELT),LCTL(KC_INS),S(KC_INS), ALT_T(KC_APP),
@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Mirror Layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |    =   |   0  |   9  |   8  |   7  |   6  |   %   |           |      |   6  |   7  |   8  |   9  |   0  |        |
+ * |    =   |   0  |   9  |   8  |   7  |   6  |   %  |           |      |   6  |   7  |   8  |   9  |   0  |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |    Z   |   J  |   L  |   D  |   V  |   ^  |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -180,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // left hand
         KC_TRNS,  BP_1,     BP_2,     BP_3,    BP_4,     BP_5,     KC_TRNS,
         KC_TRNS,  BP_Q,     BP_W,     BP_E,    BP_R,     BP_T,     KC_TRNS,
-        MO(SVIM), BP_A,     BP_S,     BP_D,    BP_F,     BP_G,   
+        KC_TRNS,  BP_A,     BP_S,     BP_D,    BP_F,     BP_G,   
         KC_TRNS,  BP_Z,     BP_X,     BP_C,    BP_V,     BP_B,     KC_TRNS,
         M(M_VIQW),  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,                
 
@@ -247,6 +247,9 @@ void matrix_scan_user(void) {
             ergodox_right_led_2_set(LED_BRIGHTNESS_LO);
             ergodox_right_led_2_on();
             break;
+        case LR_VIM:
+            ergodox_right_led_3_set(LED_BRIGHTNESS_LO);
+            ergodox_right_led_3_on();
         default:
             // none
             break;
