@@ -17,6 +17,7 @@ enum layers {
 enum macros {
     M_DBL0, // double 0
     M_LANG,
+    M_VIQW, //Switch between pure QWERTY and VI actions
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -149,6 +150,50 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                   BP_EQL,    BP_4,     BP_5,     BP_6,     BP_PLUS,  KC_RSFT,
         KC_ENT,   BP_SCLN,   BP_1,     BP_2,     BP_3,     BP_MINS,  KC_TRNS,
                              BP_0,     M(M_DBL0),BP_DOT,   BP_SLSH,  KC_TRNS,
+
+        KC_TRNS,  KC_TRNS,
+        KC_TRNS,
+        KC_PAUS,  KC_TRNS,  KC_TRNS
+    ),
+ /* Vim / QWERTY Layer
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |        |    1 |   2  |    3 |   4  |   5  |      |           |      |    6 |   7  |   8  |   9  |   0  |        |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * |        |   Q  |   W  |   E  |   R  |   T  |      |           |      |   Y  |   U  |  I   |  O   |   P  |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * | MO(SFT)|   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |  K   |  L   |   ;  | MO(SFT)|
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |  ,   |  .   |   /  |        |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |Vi/QW |      |      |      |      |                                       |      |      |      |      |       |
+ *   `----------------------------------'                                       `-----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        |      |      |       |      |      |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |------|       |------|      |      |
+ *                                 |      |      |      |       |      |      |      |
+ *                                 `--------------------'       `--------------------'
+ */
+[LR_VIM] = KEYMAP(
+        // left hand
+        KC_TRNS,  BP_1,     BP_2,     BP_3,    BP_4,     BP_5,     KC_TRNS,
+        KC_TRNS,  BP_Q,     BP_W,     BP_E,    BP_R,     BP_T,     KC_TRNS,
+        MO(SVIM), BP_A,     BP_S,     BP_D,    BP_F,     BP_G,   
+        KC_TRNS,  BP_Z,     BP_X,     BP_C,    BP_V,     BP_B,     KC_TRNS,
+        M(M_VIQW),  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,                
+
+                                                      KC_TRNS,  KC_TRNS,
+                                                                KC_TRNS,
+                                             KC_SPC,  KC_TRNS,  KC_TRNS,
+
+        // right hand
+        KC_TRNS,  BP_6,      BP_7,     BP_8,     BP_9,     BP_0,     KC_TRNS,
+        KC_TRNS,  BP_Y,      BP_U,     BP_I,     BP_O,     BP_P,     KC_TRNS,
+                  BP_H,      BP_J,     BP_K,     BP_L,     KC_SCLN,  KC_TRNS,
+        KC_TRNS,  BP_N,      BP_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_TRNS,
+                             KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
 
         KC_TRNS,  KC_TRNS,
         KC_TRNS,
