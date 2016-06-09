@@ -35,11 +35,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   |Mirror| Cut  | Copy | Paste| LAlt |                                       |Alt Gr|AltSft|Media | Vim  | Ç/~L1|
  *   `----------------------------------'                                       `----------------------------------'
  *                                       ,--------------.       ,-------------.
- *                                       |  Del  | GUI  |       | Left | Right|
+ *                                       | Left  | Right|       | GUI  |  Del |
  *                                ,------+-------+------|       |------+------+------.
- *                                |      |       |PgUp  |       | Up   |      |      |
- *                                |Space |Bkspce |------|       |------|Enter |Space |
- *                                |      |       |PgDown|       | Down |      |      |
+ *                                |      |       |  Up  |       | PgUp |      |      |
+ *                                |Space | Enter |------|       |------|BkSpce|Space |
+ *                                |      |       | Down |       | PgDwn|      |      |
  *                                `---------------------'       `--------------------'
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
@@ -52,9 +52,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL,    BP_AGRV,   BP_Y,    BP_X,      BP_DOT,   BP_K,    KC_ENT,
         TG(LR_MIRROR),S(KC_DELT),LCTL(KC_INS),S(KC_INS), ALT_T(KC_APP),
 
-                                                   KC_DELT,  KC_LGUI,
-                                                             KC_PGUP,
-                                          KC_SPC,  KC_BSPC,  KC_PGDN,
+                                                   KC_LEFT,  KC_RGHT,
+                                                             KC_UP,
+                                          KC_SPC,  KC_BSPC,  KC_DN,
 
         // right hand
         BP_PERC,   KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     BP_EQL,
@@ -63,9 +63,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_BSPC,   BP_APOS,  BP_Q,    BP_G,    BP_H,    BP_F,     CTL_T(LCTL(LALT(KC_DEL))),
                              BP_ALGR, M(M_LANG), TG(LR_MEDIA), TG(LR_VIM),LT(LR_SYMB,BP_CCED),
 
-        KC_LEFT, KC_RGHT,
-        KC_UP,
-        KC_DOWN, KC_ENT,   KC_SPC
+        KC_DELT, KC_LGUI,
+        KC_PGUP,
+        KC_PGDN, KC_BSPC,  KC_SPC
     ),
 /* Mirror Layer
  *
@@ -197,7 +197,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         KC_TRNS,  KC_TRNS,
         KC_TRNS,
-        KC_PAUS,  KC_TRNS,  KC_TRNS
+        KC_TRNS,  KC_TRNS,  KC_TRNS
     ),
 
 };
@@ -215,6 +215,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
                 return MACRO( I(25), T(P0), T(P0), END);
             }    
             break;
+        case M_VIQW:
     }
     return MACRO_NONE;
 };
