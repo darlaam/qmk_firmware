@@ -29,10 +29,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |  Tab   |   B  |   É  |   P  |   O  |   È  |  W   |           |  L1  |   ^  |   V  |   D  |   L  |   J  |   Z    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | LShift |   A  |   U  |   I  |   E  |   ,  |------|           |------|   C  |   T  |   S  |   R  |   N  | M/RSft |
- * |--------+------+------+------+------+------|Enter |           |BkSpce|------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------|Bkspc |           |BkSpce|------+------+------+------+------+--------|
  * |  Ctrl  |   À  |   Y  |   X  |   .  |   K  |      |           |      |   '  |   Q  |   G  |   H  |   F  |  Ctrl  |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |Mirror| Cut  | Copy | Paste| LAlt |                                       |Alt Gr|AltSft|Media | Vim  | Ç/~L1|
+ *   |Mirror| Cut  | Copy | Paste| LAlt |                                       |Alt Gr|AltSft|Media | ViQW | Ç/~L1|
  *   `----------------------------------'                                       `----------------------------------'
  *                                       ,--------------.       ,-------------.
  *                                       | Left  | Right|       | GUI  |  Del |
@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                                                    KC_LEFT,  KC_RGHT,
                                                              KC_UP,
-                                          KC_SPC,  KC_BSPC,  KC_DN,
+                                          KC_SPC,  KC_BSPC,  KC_DOWN,
 
         // right hand
         BP_PERC,   KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     BP_EQL,
@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Mirror Layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |    =   |   0  |   9  |   8  |   7  |   6  |   %  |           |      |   6  |   7  |   8  |   9  |   0  |        |
+ * |    =   |   0  |   9  |   8  |   7  |   6  |   %  |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |    Z   |   J  |   L  |   D  |   V  |   ^  |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -166,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |  ,   |  .   |   /  |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |Vi/QW |      |      |      |      |                                       |      |      |      |      |       |
+ *   |      |      |      |      |      |                                       |      |      |      |      |       |
  *   `----------------------------------'                                       `-----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
@@ -182,7 +182,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,  BP_Q,     BP_W,     BP_E,    BP_R,     BP_T,     KC_TRNS,
         KC_TRNS,  BP_A,     BP_S,     BP_D,    BP_F,     BP_G,   
         KC_TRNS,  BP_Z,     BP_X,     BP_C,    BP_V,     BP_B,     KC_TRNS,
-        M(M_VIQW),  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,                
+        KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,                
 
                                                       KC_TRNS,  KC_TRNS,
                                                                 KC_TRNS,
@@ -199,7 +199,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,
         KC_TRNS,  KC_TRNS,  KC_TRNS
     ),
+/* Media layer
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |        |      |      |      |      |      |Insert|           |Insert|Eject |Power |Sleep | Wake |PrtScr|ScrollLk|
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |VolUp |           |      |      |      |      |      |      | Pause  |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |      | Calc | Mail |Browsr|------|           |------|      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      | cut  | copy |paste | Mute |VolDn |           |      |      |      |      |      |      |        |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |      |      |      |      |      |                                       |      |      |      |      |      |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        |      |      |       |      |      |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |      |       | Next |      |      |
+ *                                 | Mute |      |------|       |------|      |      |
+ *                                 |      |      |      |       | Prev |      |      |
+ *                                 `--------------------'       `--------------------'
+ */
+// MEDIA AND MOUSE
+[LR_MEDIA] = KEYMAP(
+       KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS,     KC_TRNS,      KC_TRNS, KC_INS,
+       KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS,     KC_TRNS,      KC_TRNS, KC_VOLU,
+       KC_TRNS, KC_TRNS, KC_TRNS,      KC_CALC,     KC_MAIL,      KC_WHOM,
+       KC_TRNS, KC_TRNS, LSFT(KC_DELT),LCTL(KC_INS),LSFT(KC_INS), KC_MUTE, KC_VOLD,
+       KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS,     KC_TRNS,
 
+                                           KC_TRNS, KC_TRNS,
+                                                    KC_TRNS,
+                                  KC_MUTE, KC_TRNS, KC_TRNS,
+    // right hand
+       KC_INS,   KC_EJCT, KC_PWR,  KC_SLEP, KC_WAKE, KC_PSCR, KC_SLCK,
+       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PAUS,
+                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+
+       KC_TRNS, KC_TRNS,
+       KC_MPRV,
+       KC_MNXT, KC_TRNS, KC_TRNS
+),
 };
 
 const uint16_t PROGMEM fn_actions[] = {
@@ -215,7 +257,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
                 return MACRO( I(25), T(P0), T(P0), END);
             }    
             break;
-        case M_VIQW:
     }
     return MACRO_NONE;
 };
@@ -237,22 +278,26 @@ void matrix_scan_user(void) {
     
     switch (layer) {
         case LR_BASE:
-            //ergodox_right_led_1_set(LED_BRIGHTNESS_LO);
-            //ergodox_right_led_1_on();
+            ergodox_right_led_3_set(LED_BRIGHTNESS_LO);
+            ergodox_right_led_3_on();
             break;
         case LR_MIRROR:
+            ergodox_right_led_3_set(LED_BRIGHTNESS_LO);
             ergodox_right_led_1_set(LED_BRIGHTNESS_LO);
+            ergodox_right_led_3_on(); 
             ergodox_right_led_1_on();
             break;
         case LR_SYMB:
+            ergodox_right_led_3_set(LED_BRIGHTNESS_LO);
             ergodox_right_led_2_set(LED_BRIGHTNESS_LO);
             ergodox_right_led_2_on();
+            ergodox_right_led_3_on();
             break;
         case LR_VIM:
-            ergodox_right_led_3_set(LED_BRIGHTNESS_LO);
-            ergodox_right_led_3_on();
+            ergodox_right_led_2_set(LED_BRIGHTNESS_LO);
+            ergodox_right_led_2_on();
         default:
             // none
             break;
     }
-};
+}
