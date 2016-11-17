@@ -6,7 +6,8 @@
 #include "keymap_bepo.h"
 #include "led.h"
 
-#define LEADER_TIMEOUT 200
+#define LEADER_TIMEOUT 250
+#define TAPPING_TERN 200
 
 enum layers {
     LR_BASE, // default bépo layer
@@ -16,6 +17,10 @@ enum layers {
 
 enum macros {
     M_DBL0, // double 0
+};
+
+enum tapdance {
+    TD_RSFT_CAPS,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -63,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         KC_NO,        KC_NO,
         TG(LR_NUMFN),
-        KC_LEAD,      KC_RSFT,      KC_ENT
+        KC_LEAD,      TD(TD_RSFT_CAPS), KC_ENT
     ),
 /* Mirror Layer
  *
@@ -136,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,        KC_NO,        KC_HOME,      KC_UP,        KC_END,       KC_PGUP,      KC_VOLU,
         KC_NO,        KC_NO,        KC_LEFT,      KC_DOWN,      KC_RIGHT,     KC_PGDN,
         //KC_NO,        KC_UNDO,      KC_CUT,       KC_COPY,      KC_PASTE,     KC_NO,        KC_VOLD,
-        KC_NO,        KC_NO,        S(KC_DELT),   LCTL(KC_INS), S(KC_INS),    KC_NO,        KC_VOLD,
+        KC_NO,        LCTL(BP_Z),   S(KC_DELT),   LCTL(KC_INS), S(KC_INS),    KC_NO,        KC_VOLD,
 	KC_NO,        KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS,
 
                                                                               KC_ESC,       KC_NO,
@@ -178,6 +183,13 @@ void matrix_init_user(void) {
 };
 
 
+//Tap dance definition
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [TD_RSFT_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_RSFT, KC_CAPS),
+};
+
+// End Tap Dance
+
 LEADER_EXTERNS();
 
 // Runs constantly in the background, in a loop.
@@ -192,7 +204,25 @@ void matrix_scan_user(void) {
         unregister_code(KC_LSFT);
         unregister_code(KC_DELT);
       }
-    }
+       SEQ_ONE_KEY(BP_X) {
+        register_code(KC_LCTL);
+        register_code(KC_INS);
+        unregister_code(KC_LCTL);
+        unregister_code(KC_INS);
+      }
+       SEQ_ONE_KEY(BP_DOT) {
+        register_code(KC_LSFT);
+        register_code(KC_INS);
+        unregister_code(KC_LSFT);
+        unregister_code(KC_INS);
+      }
+      SEQ_ONE_KEY(BP_AGRV) {
+        register_code(KC_LCTL);
+        register_code(BP_Z);
+        unregister_code(KC_LCTL);
+        unregister_code(BP_Z);
+      }
+  }
     
     uint8_t layer = biton32(layer_state);
      
