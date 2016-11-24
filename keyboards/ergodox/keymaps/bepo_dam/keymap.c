@@ -27,48 +27,48 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   $    |   "  |   «  |   »  |   (  |   )  | Del  |           | Ins  |   @  |   +  |   -  |   /  |   *  |   =    |
+ * |   $    |   "  |   «  |   »  |   (  |   )  | Esc  |           | Ins  |   @  |   +  |   -  |   /  |   *  |   =    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |   %    |   B  |   É  |   P  |   O  |   È  |Bkspce|           |CapsLo|   ^  |   V  |   D  |   L  |   J  |   Z    |
+ * |   %    |   B  |   É  |   P  |   O  |   È  | Tab  |           |Symb  |   ^  |   V  |   D  |   L  |   J  |   Z    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | W/LSFT |   A  |   U  |   I  |   E  |   ,  |------|           |------|   C  |   T  |   S  |   R  |   N  | M/RSft |
- * |--------+------+------+------+------+------| Tab  |           |      |------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------|Enter |           |LEAD  |------+------+------+------+------+--------|
  * | E_CIRC |   À  |   Y  |   X  |   .  |   K  |      |           |      |   '  |   Q  |   G  |   H  |   F  | C_CED  |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |Mirror|L_SYMB| Super| LCtrl| LAlt |                                       |Alt Gr|RCtrl |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
  *                                       ,--------------.       ,-------------.
- *                                       |  Esc  |      |       |      |      |
+ *                                       |  Del  |      |       | Left | Right|
  *                                ,------+-------+------|       |------+------+------.
- *                                |      |       |PgUp  |       |L_SYMB|      |      |
- *                                |Space | LSFT  |------|       |------| RSFT |Enter |
- *                                |      |       |PgDown|       | LEAD |      |      |
+ *                                |      |       |PgUp  |       |  Up  |      |      |
+ *                                | Space+ Bkspc |------|       |------| Enter|Space |
+ *                                |      |       |PgDown|       | Down |      |      |
  *                                `---------------------'       `--------------------'
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
 // Otherwise, it needs KC_*
 [LR_BASE] = KEYMAP(  // layer 0 : default
         // left hand
-        BP_DLR,       BP_DQOT,      BP_LGIL,      BP_RGIL,      BP_LPRN,      BP_RPRN,      KC_DEL,
-        BP_PERC,      BP_B,         BP_ECUT,      BP_P,         BP_O,         BP_EGRV,      KC_BSPC,
+        BP_DLR,       BP_DQOT,      BP_LGIL,      BP_RGIL,      BP_LPRN,      BP_RPRN,      KC_ESC,
+        BP_PERC,      BP_B,         BP_ECUT,      BP_P,         BP_O,         BP_EGRV,      KC_TAB,
         SFT_T(BP_W),  BP_A,         BP_U,         BP_I,         BP_E,         BP_COMM,
-        BP_ECRC,      BP_AGRV,      BP_Y,         BP_X,         BP_DOT,       BP_K,         KC_TAB,
+        BP_ECRC,      BP_AGRV,      BP_Y,         BP_X,         BP_DOT,       BP_K,         KC_ENT,
         TG(LR_MIRROR),OSL(LR_NUMFN),KC_LGUI,      KC_LCTL,      ALT_T(KC_APP),
 
-                                                                              KC_ESC,       KC_NO,
+                                                                              KC_DEL,       KC_NO,
                                                                                             KC_PGUP,
-                                                                KC_SPC,       KC_LSFT,      KC_PGDN,
+                                                                KC_SPC,       KC_BSPC,      KC_PGDN,
 
         // right hand
         KC_INS,       BP_AT,        BP_PLUS,      BP_MINUS,     BP_SLASH,     BP_ASTR,      BP_EQL,
-        KC_CAPSLOCK,  BP_DCRC,      BP_V,         BP_D,         BP_L,         BP_J,         BP_Z,
+        TG(LR_NUMFN), BP_DCRC,      BP_V,         BP_D,         BP_L,         BP_J,         BP_Z,
                       BP_C,         BP_T,         BP_S,         BP_R,         BP_N,         SFT_T(BP_M),
-        KC_NO,        BP_APOS,      BP_Q,         BP_G,         BP_H,         BP_F,         BP_CCED,
+        KC_LEAD,      BP_APOS,      BP_Q,         BP_G,         BP_H,         BP_F,         BP_CCED,
                                     BP_ALGR,      KC_RCTL,      KC_NO,        KC_NO,        KC_NO,
 
-        KC_NO,        KC_NO,
-        TG(LR_NUMFN),
-        KC_LEAD,      TD(TD_RSFT_CAPS), KC_ENT
+        KC_LEFT,      KC_RGHT,
+        KC_UP,
+        KC_DOWN,      KC_ENT,       KC_SPC
     ),
 /* Mirror Layer
  *
@@ -94,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [LR_MIRROR] = KEYMAP(  // layer 1 : Mirror
         // left hand
         BP_EQL,       BP_ASTR,      BP_SLASH,     BP_MINUS,     BP_PLUS,      BP_AT,        KC_INS,
-        BP_Z,         BP_J,         BP_L,         BP_D,         BP_V,         BP_DCRC,      KC_NO,
+        BP_Z,         BP_J,         BP_L,         BP_D,         BP_V,         BP_DCRC,      KC_TRNS,
         SFT_T(BP_M),  BP_N,         BP_R,         BP_S,         BP_T,         BP_C,
         BP_CCED,      BP_F,         BP_H,         BP_G,         BP_Q,         BP_APOS,      KC_NO,
         KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_RCTL,      BP_ALGR,
@@ -150,7 +150,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         // right hand
         KC_NO,        KC_F6,        KC_F7,        KC_F8,        KC_F9,        KC_F10,       KC_F11,
-        KC_NO,        KC_NO,        KC_P7,        KC_P8,        KC_P9,        KC_PAST,      KC_F12,
+        KC_TRNS,      KC_NO,        KC_P7,        KC_P8,        KC_P9,        KC_PAST,      KC_F12,
                       KC_PEQL,      KC_P4,        KC_P5,        KC_P6,        KC_PPLS,      KC_NO,
         KC_NO,        KC_NO,        KC_P1,        KC_P2,        KC_P3,        KC_PMNS,      KC_NO,
                                     KC_P0,        M(M_DBL0),    KC_PDOT,      KC_PSLS,      KC_NO,
