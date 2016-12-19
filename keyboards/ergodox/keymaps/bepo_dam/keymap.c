@@ -20,7 +20,7 @@ enum macros {
 };
 
 enum tapdance {
-    TD_RSFT_CAPS,
+    TD_CCED_CAPS,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |   $    |   "  |   «  |   »  |   (  |   )  | Esc  |           | Ins  |   @  |   +  |   -  |   /  |   *  |   =    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |   %    |   B  |   É  |   P  |   O  |   È  | Tab  |           |Symb  |   ^  |   V  |   D  |   L  |   J  |   Z    |
+ * | Tab    |   B  |   É  |   P  |   O  |   È  |  %   |           |Symb  |   ^  |   V  |   D  |   L  |   J  |   Z    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | W/LSFT |   A  |   U  |   I  |   E  |   ,  |------|           |------|   C  |   T  |   S  |   R  |   N  | M/RSft |
  * |--------+------+------+------+------+------|Enter |           |LEAD  |------+------+------+------+------+--------|
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [LR_BASE] = KEYMAP(  // layer 0 : default
         // left hand
         BP_DLR,       BP_DQOT,      BP_LGIL,      BP_RGIL,      BP_LPRN,      BP_RPRN,      KC_ESC,
-        BP_PERC,      BP_B,         BP_ECUT,      BP_P,         BP_O,         BP_EGRV,      KC_TAB,
+        KC_TAB,       BP_B,         BP_ECUT,      BP_P,         BP_O,         BP_EGRV,      BP_PERC,
         SFT_T(BP_W),  BP_A,         BP_U,         BP_I,         BP_E,         BP_COMM,
         BP_ECRC,      BP_AGRV,      BP_Y,         BP_X,         BP_DOT,       BP_K,         KC_ENT,
         TG(LR_MIRROR),OSL(LR_NUMFN),KC_LGUI,      KC_LCTL,      ALT_T(KC_APP),
@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_INS,       BP_AT,        BP_PLUS,      BP_MINUS,     BP_SLASH,     BP_ASTR,      BP_EQL,
         TG(LR_NUMFN), BP_DCRC,      BP_V,         BP_D,         BP_L,         BP_J,         BP_Z,
                       BP_C,         BP_T,         BP_S,         BP_R,         BP_N,         SFT_T(BP_M),
-        KC_LEAD,      BP_APOS,      BP_Q,         BP_G,         BP_H,         BP_F,         BP_CCED,
+        KC_LEAD,      BP_APOS,      BP_Q,         BP_G,         BP_H,         BP_F,         TD(TD_CCED_CAPS),
                                     BP_ALGR,      KC_RCTL,      KC_NO,        KC_NO,        KC_NO,
 
         KC_LEFT,      KC_RGHT,
@@ -185,7 +185,7 @@ void matrix_init_user(void) {
 
 //Tap dance definition
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_RSFT_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_RSFT, KC_CAPS),
+  [TD_CCED_CAPS] = ACTION_TAP_DANCE_DOUBLE(BP_CCED, KC_CAPS),
 };
 
 // End Tap Dance
